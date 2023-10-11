@@ -1,0 +1,59 @@
+.header {
+	background-color: darkslateblue;
+	height: 177px;
+	font-size: 0.8em;
+	margin-left: 0px;
+	margin-right: 0px;
+	min-width: 900px;
+	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+}
+
+.head-container{
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.logo_text h1, .logo_text h1 a, .logo_text h1 a:hover {
+	padding: 22px 0 0 0;
+	color: #fff;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+
+.under-logo-txt  {
+	text-align: left;
+	font-size: 1.5em;
+	padding: 4px 0 0 0;
+	color: #999;
+}
+
+
+
+.menu {
+
+	display: flex;
+	gap: 20px;
+	align-items: center
+}
+
+.navLink{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	font-size: 15px;
+	height: 20px;
+	color: beige;
+	&:hover{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color:yellow;
+		border-radius: 5px;
+	}
+
+}

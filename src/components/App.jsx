@@ -1,8 +1,8 @@
 
-import { lazy, Suspense, useEffect } from "react";
+import {  useEffect } from "react";
 import {  Routes, Route} from "react-router-dom";
 import { Layout } from "./Layout";
-import { HomePage } from "pages/HomePage";
+ import { HomePage } from "pages/HomePage";
 import { Contacts } from "pages/Contacts";
 import { LogPage } from "pages/LogPage";
 import { RegPage } from "pages/RegPage";

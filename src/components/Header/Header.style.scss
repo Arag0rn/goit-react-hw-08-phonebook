@@ -1,5 +1,5 @@
 .header {
-	background-color: darkslateblue;
+	background-color: rgb(87, 87, 250);
 	height: 177px;
 	font-size: 0.8em;
 	margin-left: 0px;
@@ -47,12 +47,12 @@
 	text-decoration: none;
 	font-size: 15px;
 	height: 20px;
-	color: beige;
+	color: black;
 	&:hover{
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color:yellow;
+		color:rgb(84, 84, 243);
 		border-radius: 5px;
 	}
 

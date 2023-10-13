@@ -18,8 +18,10 @@ export const Header = () => {
 
       <div className="menubar">
         <nav className="menu">
-          <Link className="navLink" to="/">Login</Link>
-          <Link className="navLink" to="/most-rated-movie">Register</Link>
+          <Link className="navLink" to="/login">Login</Link>
+          <Link className="navLink" to="/registration">Register</Link>
+          <Link className="navLink" to="/">Home</Link>
+
 
         </nav>
       </div>

@@ -1,16 +1,16 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled} from './ContactForm.styled';
+import { AddContContainer, StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled} from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContscts } from 'Api';
-
+import { addFetchedContact } from 'Redux/Auth/operation'; 
+import { nanoid } from 'nanoid';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    phone: Yup.string()
+    number: Yup.string()
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .matches(/^\d+$/, 'Must only contain digits') 
@@ -22,19 +22,25 @@ export const ContactForm  = ( ) =>{
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.contacts);
     return <>
-        <div>
+        <AddContContainer>
         <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       validationSchema={SignupSchema}
       onSubmit={(values, action) => {
+        const newContact = {
+          id: nanoid(), 
+          name: values.name,
+          number: values.number,
+        };
+  
         if (contacts.some(contact => contact.name.toLowerCase() === values.name.toLowerCase())) {
           alert(`${values.name} is already in contacts`);
           return;
         } else {
-        dispatch(addContscts(values));
+        dispatch(addFetchedContact(newContact));
         action.resetForm();
       }}
     }
@@ -46,9 +52,9 @@ export const ContactForm  = ( ) =>{
         />
         <ErMsg component="span" name="name" />
 
-        <Styledlabel htmlFor="phone">Number</Styledlabel>
-        <StyledField id="phone" 
-            name="phone"   
+        <Styledlabel htmlFor="number">Number</Styledlabel>
+        <StyledField id="number" 
+            name="number"   
             type="tel"
             placeholder="555-55-55"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -58,7 +64,7 @@ export const ContactForm  = ( ) =>{
       </StyledForm>
     </Formik>
          
-        </div>
+        </AddContContainer>
        </>
 
   

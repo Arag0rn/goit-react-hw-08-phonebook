@@ -10,25 +10,29 @@ import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { refreshUser } from "Redux/Auth/operation";
 import { useDispatch } from "react-redux";
+import { useAuth } from "hooks/useAuth";
 
 
 export const App =()=>{
-
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-    return (
+    return isRefreshing ? (
+      <b>Refreshing user...</b>
+    ) : (
       <Routes>
       <Route path="/" element={<Layout/>}>
         <Route index element={<HomePage />} /> 
-        <Route path="/login"  element={
-          <RestrictedRoute redirectTo="/login" component={<LogPage />}  />} />
-        <Route path="/registration"  element={
+        <Route path="login"  element={
+          <RestrictedRoute redirectTo="/contacts" component={<LogPage />}  />} />
+        <Route path="registration"  element={
           <RestrictedRoute redirectTo="/registration" component={<RegPage />}  />} />
         <Route path="/contacts" element={
-          <PrivateRoute redirectTo="/contacts" component={<Contacts />} />} />
+          <PrivateRoute redirectTo="/login" component={<Contacts />} />} />
       </Route>
     </Routes> 
   );

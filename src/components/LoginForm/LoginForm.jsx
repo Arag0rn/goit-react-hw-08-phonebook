@@ -1,39 +1,37 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled} from './LoginForm.styled';
+import { FormContainer, StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled} from './LoginForm.styled';
 import { useDispatch } from 'react-redux';
 
 import { logIn } from 'Redux/Auth/operation';
 
 
-// const SignupSchema = Yup.object().shape({
-//   name: Yup.string()
-//     .min(3, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-//     phone: Yup.string()
-//     .min(5, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .matches(/^\d+$/, 'Must only contain digits') 
-//     .required('Required'),
-// });
+const SignupSchema = Yup.object().shape({
+  email: Yup.string()
+  .email('Invalid email address')
+  .required('Required'),
+password: Yup.string()
+  .min(5, 'Too Short!')
+  .max(50, 'Too Long!')
+  .matches(/[a-zA-Z]/, 'Must contain at least one letter')
+  .matches(/^\d+$/, 'Must only contain digits') 
+  .required('Required'),
+});
 
 
 export const LoginForm  = ( ) =>{
   const dispatch = useDispatch();
     return <>
-        <div>
+        <FormContainer>
         <Formik
       initialValues={{
-        name: '',
         email: '',
         password: '',
       }}
-      // validationSchema={SignupSchema}
+      validationSchema={SignupSchema}
       onSubmit={(values, action) => {
         action.resetForm();
         dispatch(logIn({
-          name: values.name,
           email: values.email,
           password: values.password,
         }));
@@ -45,7 +43,7 @@ export const LoginForm  = ( ) =>{
         <StyledField id="email" name="email" 
         placeholder="email" 
         />
-        <ErMsg component="span" name="name" />
+        <ErMsg component="span" name="email" />
 
         <Styledlabel htmlFor="password">Password</Styledlabel>
         <StyledField id="password" 
@@ -54,12 +52,12 @@ export const LoginForm  = ( ) =>{
             placeholder="password" 
             title="password number must be digits and can contain spaces, dashes, parentheses and can start with +"
          />
-          <ErMsg component="span" name="phone" />
+          <ErMsg component="span" name="password" />
         <FormBtnStyled type="submit">Submit</FormBtnStyled>
       </StyledForm>
     </Formik>
          
-        </div>
+        </FormContainer>
        </>
 
   

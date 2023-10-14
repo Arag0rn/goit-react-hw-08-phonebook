@@ -1,37 +1,78 @@
 import styled from 'styled-components';
 
+
+export const ListContContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  
+`
 export const StyledUl = styled.ul`
 display: grid;
-margin: 0 auto;
-justify-items: center;
-border: 1px solid black;
+justify-content: center;
+gap:5px;
 border-radius: 5px;
 padding: 15px;
-width: 400px;
-column-gap: 8px;
-row-gap: 8px;
+min-width: 320px;
 list-style: none;
-background: #f5f5dc;
+background:linear-gradient(66deg, #e38010, #1535bf);
 box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 `
+export const ContactCard = styled.li`
+padding:5px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+height: 40px;
+background-color: rgb(236, 243, 243, 50%);
+border-radius: 5px;
+`
+
 
 export const NumberStyled = styled.span`
-margin-left: 10px;
+  color: white;
+  background-color:  #1535bf;
+  border-radius: 5px;
+  padding:2px;
 `
 
 export const DeletBtn = styled.button`
-border-radius: 40px;
-margin-left: 10px;
-height: 20px;
-background-color: #30d5c8;
-color: #f3f3f3;
-font-size: 12px;
-font-weight: 700;
-text-transform: uppercase;
-border:none;
+display: inline-block;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px rgba(0,0,0,.5);
+  user-select: none;
+  padding: .3em 0.5em;
+  border-radius: 5px;
+  outline: none;
+  background: rgb(147,80,36) linear-gradient(rgb(106,58,26), rgb(147,80,36) 80%);
+  box-shadow:
+   0 6px rgb(86,38,6),
+   0 3px 15px rgba(0,0,0,.4),
+   inset 0 1px rgba(255,255,255,.3),
+   inset 0 0 3px rgba(255,255,255,.5);
+  transition: .2s;
 &:hover {
-  scale: 105%;
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  background: rgb(167,91,41) linear-gradient(rgb(126,69,31), rgb(167,91,41) 80%);
 }
+&:active {
+  background: rgb(120,63,25) linear-gradient(rgb(120,63,25) 20%, rgb(167,91,41));
+  box-shadow:
+   0 2px rgb(86,38,6),
+   0 1px 6px rgba(0,0,0,.4),
+   inset 0 1px rgba(255,255,255,.3),
+   inset 0 0 3px rgba(255,255,255,.5);
+  -webkit-transform: translate(0, 4px);
+  transform: translate(0, 4px);
+}
+`
+export const Name = styled.div`
+  color:white;
+  text-transform: uppercase;
+  background-color: #c4935b;
+  border-radius: 5px;
+  padding:2px;
+  
 `

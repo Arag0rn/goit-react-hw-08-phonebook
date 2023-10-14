@@ -1,34 +1,38 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled} from './RegistrForm.styled';
+import { StyledForm, ErMsg, StyledField, Styledlabel, FormBtnStyled, RegContContainer} from './RegistrForm.styled';
 import { useDispatch } from 'react-redux';
 import { register } from 'Redux/Auth/operation';
 
 
-// const SignupSchema = Yup.object().shape({
-//   name: Yup.string()
-//     .min(3, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-//     phone: Yup.string()
-//     .min(5, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .matches(/^\d+$/, 'Must only contain digits') 
-//     .required('Required'),
-// });
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+  .min(3, 'Too Short!')
+  .max(50, 'Too Long!')
+  .required('Required'),
+email: Yup.string()
+  .email('Invalid email address')
+  .required('Required'),
+password: Yup.string()
+  .min(5, 'Too Short!')
+  .max(50, 'Too Long!')
+  .matches(/[a-zA-Z]/, 'Must contain at least one letter')
+  .matches(/^\d+$/, 'Must only contain digits') 
+  .required('Required'),
+});
 
 
 export const RegForm  = ( ) =>{
   const dispatch = useDispatch();
     return <>
-        <div>
+        <RegContContainer>
         <Formik
       initialValues={{
         name: '',
         email: '',
         password: '',
       }}
-      // validationSchema={SignupSchema}
+      validationSchema={SignupSchema}
       onSubmit={(values, action) => {
         action.resetForm();
         dispatch(register({
@@ -65,7 +69,7 @@ export const RegForm  = ( ) =>{
       </StyledForm>
     </Formik>
          
-        </div>
+        </RegContContainer>
        </>
 
   

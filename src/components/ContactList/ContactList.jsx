@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { StyledUl, NumberStyled, DeletBtn } from "./ContactList.styled";
-import { deleteContact } from "Api"; 
+import { StyledUl, NumberStyled, DeletBtn, ListContContainer, ContactCard, Name } from "./ContactList.styled";
+import { deleteFetchedContact } from "Redux/Auth/operation"; 
 import {  filteredContacts} from "Redux/selector";
 import { useEffect } from "react";
-import { fetchContacts } from "Api";
+import { fetchContacts } from "Redux/Auth/operation"; 
 
 export const ContactList = () => {
   
@@ -18,13 +18,15 @@ export const ContactList = () => {
 
 
   return (
+    <ListContContainer>
     <StyledUl>
-      {contacts.map(({ name, phone, id }) => (
-        <li key={id}>
-          {name}: <NumberStyled>{phone}</NumberStyled>
-          <DeletBtn onClick={() => dispatch(deleteContact(id))}>Delete</DeletBtn>
-        </li>
+      {contacts.map(({ name, number, id }) => (
+        <ContactCard key={id}>
+         <Name> {name}:</Name> <NumberStyled>{number}</NumberStyled>
+          <DeletBtn onClick={() => dispatch(deleteFetchedContact(id))}>Delete</DeletBtn>
+        </ContactCard>
       ))}
     </StyledUl>
+    </ListContContainer>
   );
 };

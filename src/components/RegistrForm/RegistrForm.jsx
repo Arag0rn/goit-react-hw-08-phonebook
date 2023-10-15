@@ -17,7 +17,6 @@ password: Yup.string()
   .min(5, 'Too Short!')
   .max(50, 'Too Long!')
   .matches(/[a-zA-Z]/, 'Must contain at least one letter')
-  .matches(/^\d+$/, 'Must only contain digits') 
   .required('Required'),
 });
 

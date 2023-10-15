@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, deleteFetchedContact, addFetchedContact } from './Auth/operation';
+import { fetchContacts, deleteFetchedContact, addFetchedContact, editContact } from './Auth/operation';
 
 const setError = (state, {payload}) => {
   state.status = 'rejected';
@@ -36,10 +36,26 @@ const contactsSlice = createSlice({
       state.status = 'resolved';
       state.contacts = state.contacts.filter(contact => contact.id !== payload.id);
     })
-   
+
     builder.addCase(fetchContacts.rejected, setError)
     builder.addCase(deleteFetchedContact.rejected, setError)
     builder.addCase(addFetchedContact.rejected, setError)
+
+    builder.addCase(editContact.pending, state => {
+      state.isLoading = true;
+    })
+    builder.addCase(editContact.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    })
+    builder.addCase(editContact.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      const updatedContact = action.payload;
+      state.contacts = state.contacts.map(item =>
+        item.id === updatedContact.id ? updatedContact : item
+      );
+    });
   }
 });
 export const { addContact, deleteContact } = contactsSlice.actions;

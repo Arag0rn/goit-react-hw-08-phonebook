@@ -76,3 +76,13 @@ export const Name = styled.div`
   padding:2px;
   
 `
+
+export const EditIcon = styled.img`
+&:hover {
+  background: rgb(167,91,41) linear-gradient(rgb(126,69,31), rgb(167,91,41) 80%);
+}
+&:active {
+  background: rgb(120,63,25) linear-gradient(rgb(120,63,25) 20%, rgb(167,91,41));
+}
+ ` 
+

@@ -17,9 +17,13 @@ export const App =()=>{
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
+  
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+
 
     return isRefreshing ? (
       <b>Refreshing user...</b>
@@ -30,7 +34,7 @@ export const App =()=>{
         <Route path="login"  element={
           <RestrictedRoute redirectTo="/contacts" component={<LogPage />}  />} />
         <Route path="registration"  element={
-          <RestrictedRoute redirectTo="/registration" component={<RegPage />}  />} />
+          <RestrictedRoute redirectTo="/contacts" component={<RegPage />}  />} />
         <Route path="/contacts" element={
           <PrivateRoute redirectTo="/login" component={<Contacts />} />} />
       </Route>
